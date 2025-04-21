@@ -502,26 +502,36 @@ a{
   
   .portfolio .images {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+  flex-wrap: nowrap; /* éléments sur une seule ligne */
+  overflow-x: auto; /* permet le scroll horizontal */
+  overflow-y: hidden;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  scroll-behavior: smooth; /* optionnel : pour un scroll fluide */
   }
   /*  #######################################################  debut suplementire */
   .portfolio .images .box{
-    height: 270rem;
-    width: 240rem; 
-    border-radius: .5rem;
-    box-shadow: 0 .1rem .2rem #333;
-    margin: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    cursor: pointer;
-    overflow: hidden;
+  flex: 0 0 auto; /* empêche les éléments de rétrécir */
+  width: 300px;
+  height: 300px;
+  border-radius: .5rem;
+  box-shadow: 0 .1rem .2rem #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  cursor: pointer;
+  overflow: hidden;
 
   }
+.portfolio .images::-webkit-scrollbar {
+  display: none;
+}
+.portfolio .images {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
 
   /*TEST D'EFFET#########################################*/
   .portfolio .images .box:hover p{
