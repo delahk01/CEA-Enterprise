@@ -1485,3 +1485,52 @@ body.dark-mode .portfolio .controls .buttons {
 body.dark-mode .portfolio .controls .active {
   background-color: var(--blue);
 }
+
+
+
+.testimonials-section {
+    padding: 5rem 2rem;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.testimonial {
+    background: white;
+    box-shadow: 0 .3rem .8rem rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 300px;
+    border-radius: 1rem;
+}
+
+.testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.testimonial h3 {
+    color: var(--blue);
+    font-size: 1.6rem;
+    margin-bottom: .3rem;
+}
+
+.testimonial span {
+    font-size: 1.3rem;
+    color: gray;
+}
+
+.testimonial p {
+    font-size: 1.4rem;
+    color: #444;
+    font-style: italic;
+    margin-top: 1rem;
+}
