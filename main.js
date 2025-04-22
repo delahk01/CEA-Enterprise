@@ -67,3 +67,19 @@ $(document).ready(function(){
 
 //<!-- header section end-->
 
+// Mode sombre
+const toggle = document.getElementById("dark-mode-toggle");
+const isDark = localStorage.getItem("cea-theme") === "dark";
+
+// Appliquer le thème au chargement
+if (isDark) {
+    document.body.classList.add("dark-mode");
+    toggle.textContent = "☀️ Mode clair";
+}
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const mode = document.body.classList.contains("dark-mode") ? "dark" : "light";
+    localStorage.setItem("cea-theme", mode);
+    toggle.textContent = mode === "dark" ? "☀️ Mode clair" : "🌙 Mode sombre";
+});
