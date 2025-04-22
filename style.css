@@ -1451,3 +1451,37 @@ a{
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode header,
+body.dark-mode .contact,
+body.dark-mode .footer,
+body.dark-mode .newsletter,
+body.dark-mode .portfolio,
+body.dark-mode .about,
+body.dark-mode #mission,
+body.dark-mode #testimonial {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark-mode .box,
+body.dark-mode .contact-info .box,
+body.dark-mode .accordion-header,
+body.dark-mode .accordion-body {
+  background-color: #2a2a2a;
+  color: #eee;
+}
+
+body.dark-mode .portfolio .controls .buttons {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .portfolio .controls .active {
+  background-color: var(--blue);
+}
