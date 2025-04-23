@@ -1535,20 +1535,38 @@ body.dark-mode .portfolio .controls .active {
     margin-top: 1rem;
 }
 
-.portfolio .images .box {
-  position: relative; /* nécessaire pour positionner l'icône */
+/* Positionnement de l'œil */
+.box .eye-icon {
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
-.box .icon-overlay {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2.4rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 0.5rem 0.7rem;
-  border-radius: 50%;
-  z-index: 2;
-  pointer-events: none; /* ne bloque pas le clic */
-  transition: transform 0.3s ease;
+/* Masquer l'œil au survol */
+.portfolio .images .box:hover .eye-icon {
+  opacity: 0;
+}
+
+/* Assure que le conteneur est positionné pour l'œil */
+.portfolio .images .box {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Par défaut, le texte est masqué jusqu’au survol */
+.portfolio .images .box p {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Afficher le texte au survol */
+.portfolio .images .box:hover p {
+  opacity: 1;
 }
