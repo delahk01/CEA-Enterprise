@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Offres – CEA ENTERPRISE</title>
+  <title>Nos Offres – CEA ENTERPRISE</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
@@ -11,59 +11,66 @@
       background: #f9f9f9;
     }
 
-    section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
     h1.heading {
       font-size: 2.8rem;
       color: var(--blue);
-      margin-bottom: 2rem;
+      margin: 2rem;
+      text-align: center;
     }
 
-    .offres-container {
+    section {
+      margin: 4rem 2rem;
+    }
+
+    h2.section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    .offres-group {
+      overflow-x: auto;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      padding-bottom: 1rem;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    .offres-group::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
     }
 
     .offre {
+      min-width: 280px;
       background: white;
       box-shadow: 0 .3rem 1rem rgba(0,0,0,0.1);
       border-radius: 1rem;
-      padding: 2rem;
-      max-width: 350px;
-      text-align: left;
-      position: relative;
+      padding: 1.5rem;
+      flex: 0 0 auto;
     }
 
-    .offre h2 {
-      font-size: 1.8rem;
+    .offre h3 {
       color: var(--blue);
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
     }
 
-    .offre .desc {
-      font-size: 1.4rem;
-      margin: 1rem 0;
-      color: #333;
+    .offre p {
+      margin: .4rem 0;
+      font-size: 1.3rem;
     }
 
     .btn-postuler {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
+      padding: 0.6rem 1.2rem;
       background: var(--blue);
       color: white;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       border-radius: .5rem;
       text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .btn-postuler:hover {
-      background: #333;
     }
 
     footer {
@@ -75,56 +82,74 @@
 </head>
 <body>
 
-  <header>
-    <h1 class="heading">Nos Offres d’Emploi, Stage & Job Étudiant</h1>
-  </header>
+  <h1 class="heading">Nos Offres d'emploi, de stage et de jobs étudiants</h1>
 
-  <!-- Section STAGES -->
-  <section id="stages">
-    <h1 class="heading">Stages Professionnels</h1>
-    <div class="offres-container">
+  <!-- STAGES -->
+  <section>
+    <h2 class="section-title">Stages Professionnels</h2>
+    <div class="offres-group">
       <div class="offre">
-        <h2>Développeur Web Frontend</h2>
-        <p><strong>Lieu :</strong> Yaoundé, CEA HQ</p>
+        <h3>Développeur Web</h3>
+        <p><strong>Lieu :</strong> Yaoundé</p>
         <p><strong>Date :</strong> 15 avril 2025</p>
-        <p class="desc">Participez à la refonte de notre plateforme web avec HTML, CSS, JS et Tailwind.</p>
+        <p>Refonte de l'interface CEA en HTML/CSS/JS</p>
+        <a href="#" class="btn-postuler">Postuler</a>
+      </div>
+      <div class="offre">
+        <h3>Assistant RH</h3>
+        <p><strong>Lieu :</strong> Douala</p>
+        <p><strong>Date :</strong> 12 avril 2025</p>
+        <p>Support au processus de recrutement</p>
         <a href="#" class="btn-postuler">Postuler</a>
       </div>
     </div>
   </section>
 
-  <!-- Section EMPLOIS -->
-  <section id="emplois">
-    <h1 class="heading">Offres d'Emploi</h1>
-    <div class="offres-container">
+  <!-- EMPLOIS -->
+  <section>
+    <h2 class="section-title">Emplois</h2>
+    <div class="offres-group">
       <div class="offre">
-        <h2>Assistant Administratif</h2>
+        <h3>Responsable Communication</h3>
+        <p><strong>Lieu :</strong> Yaoundé</p>
+        <p><strong>Date :</strong> 8 avril 2025</p>
+        <p>Pilotage de la communication institutionnelle</p>
+        <a href="#" class="btn-postuler">Voir l'offre</a>
+      </div>
+      <div class="offre">
+        <h3>Chef de projet</h3>
         <p><strong>Lieu :</strong> Douala</p>
         <p><strong>Date :</strong> 10 avril 2025</p>
-        <p class="desc">Rejoignez notre équipe pour la gestion administrative des dossiers étudiants et partenaires.</p>
-        <a href="#" class="btn-postuler">Voir l’offre</a>
+        <p>Coordination des projets de développement</p>
+        <a href="#" class="btn-postuler">Voir l'offre</a>
       </div>
     </div>
   </section>
 
-  <!-- Section JOBS ÉTUDIANTS -->
-  <section id="jobs">
-    <h1 class="heading">Jobs Étudiants</h1>
-    <div class="offres-container">
+  <!-- JOBS ÉTUDIANTS -->
+  <section>
+    <h2 class="section-title">Jobs Étudiants</h2>
+    <div class="offres-group">
       <div class="offre">
-        <h2>Chargé(e) de communication</h2>
+        <h3>Ambassadeur CEA</h3>
+        <p><strong>Lieu :</strong> Campus Yaoundé</p>
+        <p><strong>Date :</strong> 5 avril 2025</p>
+        <p>Promotion et représentation des activités CEA</p>
+        <a href="#" class="btn-postuler">Postuler</a>
+      </div>
+      <div class="offre">
+        <h3>Support technique</h3>
         <p><strong>Lieu :</strong> Télétravail</p>
-        <p><strong>Date :</strong> 9 avril 2025</p>
-        <p class="desc">Animation de nos réseaux sociaux, création de visuels, communication événementielle.</p>
-        <a href="#" class="btn-postuler">Voir l’offre</a>
+        <p><strong>Date :</strong> 3 avril 2025</p>
+        <p>Aide aux utilisateurs et documentation</p>
+        <a href="#" class="btn-postuler">Postuler</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <a href="index.html">← Retour à l’accueil</a>
+    <a href="index.html">← Retour à l'accueil</a>
   </footer>
 
 </body>
 </html>
-
