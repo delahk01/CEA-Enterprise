@@ -151,5 +151,33 @@
     <a href="index.html">← Retour à l'accueil</a>
   </footer>
 
+
+
+  /*--------------------------------           CODE JAVASCRIOT          -------------------------------------------*/
+  
+  <script>
+  document.querySelectorAll(".view-btn").forEach(button => {
+    button.addEventListener("click", function () {
+      const offre = this.closest(".offre");
+      const image = offre.querySelector("img").src;
+      const entreprise = offre.querySelector(".entreprise").textContent;
+      const titre = offre.querySelector("h3").textContent;
+      const lieu = offre.querySelector("p:nth-of-type(1)").textContent;
+      const date = offre.querySelector("p:nth-of-type(2)").textContent;
+
+      document.getElementById("offre-details").innerHTML = `
+        <div style="text-align:center;">
+          <img src="${image}" alt="${entreprise}" style="width:80px;height:80px;border-radius:50%;margin-bottom:1rem;">
+          <h2 style="color:var(--blue);margin-bottom:.5rem;">${titre}</h2>
+          <h3 style="margin-bottom:.5rem;">${entreprise}</h3>
+          <p><strong>${lieu}</strong></p>
+          <p><strong>${date}</strong></p>
+          <p style="margin-top:1rem;">Ceci est un exemple de description complète de l’offre. Tu pourras personnaliser cette section par la suite.</p>
+        </div>
+      `;
+    });
+  });
+</script>
+
 </body>
 </html>
