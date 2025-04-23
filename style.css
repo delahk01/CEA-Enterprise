@@ -1534,3 +1534,21 @@ body.dark-mode .portfolio .controls .active {
     font-style: italic;
     margin-top: 1rem;
 }
+
+.portfolio .images .box {
+  position: relative; /* nécessaire pour positionner l'icône */
+}
+
+.box .icon-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.5rem 0.7rem;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none; /* ne bloque pas le clic */
+  transition: transform 0.3s ease;
+}
