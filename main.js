@@ -92,7 +92,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
 
-    fetch('https://script.google.com/macros/s/TON_URL/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzPIFQ7bU5xVLaGIKODDCrFbG33pL0tEpB87rIyraay_ULOC2o5YEkJ3O0EdRo309gO/exec', {
         method: 'POST',
         body: JSON.stringify({ nom, email, message }),
         headers: { 'Content-Type': 'application/json' }
