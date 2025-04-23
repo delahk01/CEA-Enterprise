@@ -590,7 +590,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <textarea name="" id="" cols="30" rows="10" placeholder="message"></textarea>
                 <input type="submit" value="message">
         </form -->
-            <form action="https://formsubmit.co/enterprisecea@gmail.com" method="POST">
+            <!--form action="https://formsubmit.co/enterprisecea@gmail.com" method="POST">
                 <h3>Contactez-nous</h3>
                 <div class="inputBox"> 
                     <input type="text" name="name" placeholder="full name" required>
@@ -600,7 +600,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <textarea name="message" cols="30" rows="10" placeholder="message" required></textarea>
                 <input type="hidden" name="_captcha" value="false">
                 <input type="submit" value="Envoyer">
+        </form-->
+            <form id="contact-form">
+                <input type="text" id="nom" placeholder="Nom" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                <textarea id="message" placeholder="Votre message" required></textarea>
+                <input type="submit" value="Envoyer">
             </form>
+<p id="form-message" style="color:green;"></p>
+
         </div>
 
     </div>
