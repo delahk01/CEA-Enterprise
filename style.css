@@ -1570,3 +1570,56 @@ body.dark-mode .portfolio .controls .active {
 .portfolio .images .box:hover p {
   opacity: 1;
 }
+
+
+/*Emplois.lhtml  code source*/
+
+.offres-section {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.offres-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.offre {
+    background: white;
+    box-shadow: 0 .3rem 1rem rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 350px;
+    text-align: left;
+    position: relative;
+}
+
+.offre h2 {
+    color: var(--blue);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.offre .desc {
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: #333;
+}
+
+.btn-postuler {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--blue);
+    color: white;
+    font-size: 1.4rem;
+    border-radius: .5rem;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-postuler:hover {
+    background: #333;
+}
