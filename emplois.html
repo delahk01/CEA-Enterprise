@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Nos Offres – CEA ENTERPRISE</title>
-  <link rel="stylesheet" href="style.css">
   <style>
+    :root {
+      --blue: #007BFF;
+    }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
     }
-
     #barre-haut {
       padding: 1rem;
       background: white;
@@ -18,47 +19,51 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-
     #barre-haut input[type="search"] {
-      width: 100%;
-      max-width: 400px;
+      flex: 1;
       padding: 0.7rem 1rem;
       font-size: 1rem;
       border-radius: 1rem;
       border: 1px solid #ccc;
     }
-
+    #retour-btn {
+      padding: 0.6rem 1.2rem;
+      background: var(--blue);
+      color: white;
+      font-size: 0.9rem;
+      border-radius: 0.8rem;
+      text-decoration: none;
+    }
     #emplois-wrapper {
       display: flex;
       flex-direction: column;
       height: calc(100vh - 60px);
     }
-
     #offre-details {
       flex: 1;
       background: #fff;
       padding: 2rem;
       overflow-y: auto;
       border-bottom: 1px solid #ddd;
-      border-radius: 0 0 1rem 1rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     }
-
     #offres-liste {
       flex: 1;
       overflow-y: auto;
       padding: 1rem;
     }
-
     .offres-section {
       margin-bottom: 2rem;
     }
-
     .offres-section h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
     }
-
     .offres-group {
       display: flex;
       overflow-x: auto;
@@ -67,11 +72,9 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
     .offres-group::-webkit-scrollbar {
       display: none;
     }
-
     .offre {
       flex: 0 0 auto;
       min-width: 280px;
@@ -81,7 +84,6 @@
       padding: 1rem;
       text-align: center;
     }
-
     .offre img {
       width: 60px;
       height: 60px;
@@ -89,31 +91,26 @@
       object-fit: cover;
       margin-bottom: 0.5rem;
     }
-
     .offre .entreprise {
       font-weight: bold;
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
-
     .offre h3 {
       margin: 0.5rem 0 0.2rem;
       font-size: 1.2rem;
       color: var(--blue);
     }
-
     .offre p {
       font-size: 0.9rem;
       margin: 0.2rem 0;
     }
-
     .offre .actions {
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-
     .offre button {
       padding: 0.5rem 1rem;
       border: none;
@@ -121,16 +118,13 @@
       font-size: 0.9rem;
       cursor: pointer;
     }
-
     .offre .view-btn {
       background: #ccc;
     }
-
     .offre .postuler-btn {
       background: var(--blue);
       color: white;
     }
-
     @media (min-width: 768px) {
       #emplois-wrapper {
         flex-direction: row;
@@ -139,7 +133,7 @@
         width: 50%;
         border-bottom: none;
         border-left: 1px solid #ddd;
-        border-radius: 0 1rem 1rem 0;
+        border-radius: 1.2rem 0 0 1.2rem;
       }
       #offres-liste {
         width: 50%;
@@ -150,9 +144,9 @@
 </head>
 <body>
   <div id="barre-haut">
+    <a id="retour-btn" href="index.html">← Retour</a>
     <input type="search" placeholder="Rechercher une offre...">
   </div>
-
   <div id="emplois-wrapper">
     <div id="offres-liste">
       <div class="offres-section">
@@ -171,7 +165,22 @@
           </div>
         </div>
       </div>
-
+      <div class="offres-section">
+        <h2>Emplois</h2>
+        <div class="offres-group">
+          <div class="offre">
+            <img src="images/cea-logo.jpg" alt="CEA">
+            <div class="entreprise">CEA Enterprise</div>
+            <h3>Responsable Communication</h3>
+            <p>Lieu : Yaoundé</p>
+            <p>Date : 8 avril 2025</p>
+            <div class="actions">
+              <button class="view-btn">View</button>
+              <button class="postuler-btn">Postuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="offres-section">
         <h2>Jobs Étudiants</h2>
         <div class="offres-group">
@@ -188,95 +197,33 @@
           </div>
         </div>
       </div>
-
-      <div class="offres-section">
-        <h2>Emplois Stable</h2>
-        <div class="offres-group">
-          <div class="offre">
-            <img src="images/cea-logo.jpg" alt="CEA">
-            <div class="entreprise">CEA Enterprise</div>
-            <h3>Responsable Communication</h3>
-            <p>Lieu : Yaoundé</p>
-            <p>Date : 8 avril 2025</p>
-            <div class="actions">
-              <button class="view-btn">View</button>
-              <button class="postuler-btn">Postuler</button>
-            </div>
-          </div>
-<!--/***<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/-->
-  <div class="offre">
-            <img src="images/cea-logo.jpg" alt="CEA">
-            <div class="entreprise">CEA Enterprise</div>
-            <h3>Responsable Communication</h3>
-            <p>Lieu : Yaoundé</p>
-            <p>Date : 8 avril 2025</p>
-            <div class="actions">
-              <button class="view-btn">View</button>
-              <button class="postuler-btn">Postuler</button>
-            </div>
-          </div>
-  <div class="offre">
-            <img src="images/cea-logo.jpg" alt="CEA">
-            <div class="entreprise">CEA Enterprise</div>
-            <h3>Responsable Communication</h3>
-            <p>Lieu : Yaoundé</p>
-            <p>Date : 8 avril 2025</p>
-            <div class="actions">
-              <button class="view-btn">View</button>
-              <button class="postuler-btn">Postuler</button>
-            </div>
-          </div>
-  <div class="offre">
-            <img src="images/cea-logo.jpg" alt="CEA">
-            <div class="entreprise">CEA Enterprise</div>
-            <h3>Responsable Communication</h3>
-            <p>Lieu : Yaoundé</p>
-            <p>Date : 8 avril 2025</p>
-            <div class="actions">
-              <button class="view-btn">View</button>
-              <button class="postuler-btn">Postuler</button>
-            </div>
-          </div>
-<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/-->
-  
-
-
-          
-        </div>
-      </div>
     </div>
-
     <div id="offre-details">
       <p>Sélectionnez une offre pour voir les détails ici.</p>
     </div>
   </div>
-
-/* ------------------------------------------------------------------        CODE JAVASCRIPT  ------------------------------------------------ */
-
   <script>
-  document.querySelectorAll(".view-btn").forEach(button => {
-    button.addEventListener("click", function () {
-      const offre = this.closest(".offre");
-      const image = offre.querySelector("img").src;
-      const entreprise = offre.querySelector(".entreprise").textContent;
-      const titre = offre.querySelector("h3").textContent;
-      const lieu = offre.querySelector("p:nth-of-type(1)").textContent;
-      const date = offre.querySelector("p:nth-of-type(2)").textContent;
-
-      document.getElementById("offre-details").innerHTML = `
-        <div style="text-align:center;">
-          <img src="${image}" alt="${entreprise}" style="width:80px;height:80px;border-radius:50%;margin-bottom:1rem;">
-          <h2 style="color:var(--blue);margin-bottom:.5rem;">${titre}</h2>
-          <h3 style="margin-bottom:.5rem;">${entreprise}</h3>
-          <p><strong>${lieu}</strong></p>
-          <p><strong>${date}</strong></p>
-          <p style="margin-top:1rem;">Ceci est un exemple de description complète de l’offre. Tu pourras personnaliser cette section par la suite.</p>
-        </div>
-      `;
+    document.querySelectorAll(".view-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const offre = this.closest(".offre");
+        const image = offre.querySelector("img").src;
+        const entreprise = offre.querySelector(".entreprise").textContent;
+        const titre = offre.querySelector("h3").textContent;
+        const lieu = offre.querySelector("p:nth-of-type(1)").textContent;
+        const date = offre.querySelector("p:nth-of-type(2)").textContent;
+        document.getElementById("offre-details").innerHTML = `
+          <div style="text-align:center;">
+            <img src="${image}" alt="${entreprise}" style="width:120px;height:120px;border-radius:1rem;object-fit:cover;margin-bottom:1rem;">
+            <h2 style="color:var(--blue);margin-bottom:.5rem;">${titre}</h2>
+            <h3 style="margin-bottom:.5rem;">${entreprise}</h3>
+            <p><strong>${lieu}</strong></p>
+            <p><strong>${date}</strong></p>
+            <p style="margin-top:1rem;">Voici une description complète de l’offre. Ce texte peut inclure les missions, les prérequis, la durée, etc.</p>
+            <button class="postuler-btn" style="margin-top:1.5rem; padding:0.7rem 1.2rem; font-size:1rem; border:none; border-radius:0.5rem; background:var(--blue); color:white;">Postuler</button>
+          </div>
+        `;
+      });
     });
-  });
-</script>
-
-  
+  </script>
 </body>
 </html>
