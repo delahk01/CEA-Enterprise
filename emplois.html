@@ -6,155 +6,214 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f9f9f9;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
     }
 
-    h1.heading {
-      font-size: 2.8rem;
-      color: var(--blue);
-      margin: 2rem;
-      text-align: center;
+    #barre-haut {
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    section {
-      margin: 4rem 2rem;
+    #barre-haut input[type="search"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      border-radius: 1rem;
+      border: 1px solid #ccc;
     }
 
-    h2.section-title {
-      font-size: 2.2rem;
+    #emplois-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 60px);
+    }
+
+    #offre-details {
+      flex: 1;
+      background: #fff;
+      padding: 2rem;
+      overflow-y: auto;
+      border-bottom: 1px solid #ddd;
+      border-radius: 0 0 1rem 1rem;
+    }
+
+    #offres-liste {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .offres-section {
+      margin-bottom: 2rem;
+    }
+
+    .offres-section h2 {
+      font-size: 1.6rem;
       margin-bottom: 1rem;
-      color: #222;
     }
 
     .offres-group {
-      overflow-x: auto;
       display: flex;
-      gap: 1.5rem;
+      overflow-x: auto;
+      gap: 1rem;
       padding-bottom: 1rem;
-      scroll-behavior: smooth;
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     .offres-group::-webkit-scrollbar {
-      display: none; /* Chrome, Safari and Opera */
+      display: none;
     }
 
     .offre {
+      flex: 0 0 auto;
       min-width: 280px;
       background: white;
-      box-shadow: 0 .3rem 1rem rgba(0,0,0,0.1);
       border-radius: 1rem;
-      padding: 1.5rem;
-      flex: 0 0 auto;
+      box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .offre img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    .offre .entreprise {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
 
     .offre h3 {
+      margin: 0.5rem 0 0.2rem;
+      font-size: 1.2rem;
       color: var(--blue);
-      font-size: 1.5rem;
-      margin-bottom: .5rem;
     }
 
     .offre p {
-      margin: .4rem 0;
-      font-size: 1.3rem;
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
     }
 
-    .btn-postuler {
-      display: inline-block;
+    .offre .actions {
       margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .offre button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .offre .view-btn {
+      background: #ccc;
+    }
+
+    .offre .postuler-btn {
       background: var(--blue);
       color: white;
-      font-size: 1.2rem;
-      border-radius: .5rem;
-      text-decoration: none;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1.4rem;
+    @media (min-width: 768px) {
+      #emplois-wrapper {
+        flex-direction: row;
+      }
+      #offre-details {
+        width: 50%;
+        border-bottom: none;
+        border-left: 1px solid #ddd;
+        border-radius: 0 1rem 1rem 0;
+      }
+      #offres-liste {
+        width: 50%;
+        border-right: 1px solid #ddd;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="barre-haut">
+    <input type="search" placeholder="Rechercher une offre...">
+  </div>
 
-  <h1 class="heading">Nos Offres d'emploi, de stage et de jobs étudiants</h1>
+  <div id="emplois-wrapper">
+    <div id="offres-liste">
+      <div class="offres-section">
+        <h2>Stages Professionnels</h2>
+        <div class="offres-group">
+          <div class="offre">
+            <img src="images/cea-logo.jpg" alt="CEA">
+            <div class="entreprise">CEA Enterprise</div>
+            <h3>Développeur Web</h3>
+            <p>Lieu : Yaoundé</p>
+            <p>Date : 15 avril 2025</p>
+            <div class="actions">
+              <button class="view-btn">View</button>
+              <button class="postuler-btn">Postuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- STAGES -->
-  <section>
-    <h2 class="section-title">Stages Professionnels</h2>
-    <div class="offres-group">
-      <div class="offre">
-        <h3>Développeur Web</h3>
-        <p><strong>Lieu :</strong> Yaoundé</p>
-        <p><strong>Date :</strong> 15 avril 2025</p>
-        <p>Refonte de l'interface CEA en HTML/CSS/JS</p>
-        <a href="#" class="btn-postuler">Postuler</a>
+      <div class="offres-section">
+        <h2>Emplois</h2>
+        <div class="offres-group">
+          <div class="offre">
+            <img src="images/cea-logo.jpg" alt="CEA">
+            <div class="entreprise">CEA Enterprise</div>
+            <h3>Responsable Communication</h3>
+            <p>Lieu : Yaoundé</p>
+            <p>Date : 8 avril 2025</p>
+            <div class="actions">
+              <button class="view-btn">View</button>
+              <button class="postuler-btn">Postuler</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="offre">
-        <h3>Assistant RH</h3>
-        <p><strong>Lieu :</strong> Douala</p>
-        <p><strong>Date :</strong> 12 avril 2025</p>
-        <p>Support au processus de recrutement</p>
-        <a href="#" class="btn-postuler">Postuler</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- EMPLOIS -->
-  <section>
-    <h2 class="section-title">Emplois</h2>
-    <div class="offres-group">
-      <div class="offre">
-        <h3>Responsable Communication</h3>
-        <p><strong>Lieu :</strong> Yaoundé</p>
-        <p><strong>Date :</strong> 8 avril 2025</p>
-        <p>Pilotage de la communication institutionnelle</p>
-        <a href="#" class="btn-postuler">Voir l'offre</a>
-      </div>
-      <div class="offre">
-        <h3>Chef de projet</h3>
-        <p><strong>Lieu :</strong> Douala</p>
-        <p><strong>Date :</strong> 10 avril 2025</p>
-        <p>Coordination des projets de développement</p>
-        <a href="#" class="btn-postuler">Voir l'offre</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOBS ÉTUDIANTS -->
-  <section>
-    <h2 class="section-title">Jobs Étudiants</h2>
-    <div class="offres-group">
-      <div class="offre">
-        <h3>Ambassadeur CEA</h3>
-        <p><strong>Lieu :</strong> Campus Yaoundé</p>
-        <p><strong>Date :</strong> 5 avril 2025</p>
-        <p>Promotion et représentation des activités CEA</p>
-        <a href="#" class="btn-postuler">Postuler</a>
-      </div>
-      <div class="offre">
-        <h3>Support technique</h3>
-        <p><strong>Lieu :</strong> Télétravail</p>
-        <p><strong>Date :</strong> 3 avril 2025</p>
-        <p>Aide aux utilisateurs et documentation</p>
-        <a href="#" class="btn-postuler">Postuler</a>
+      <div class="offres-section">
+        <h2>Jobs Étudiants</h2>
+        <div class="offres-group">
+          <div class="offre">
+            <img src="images/cea-logo.jpg" alt="CEA">
+            <div class="entreprise">CEA Enterprise</div>
+            <h3>Ambassadeur CEA</h3>
+            <p>Lieu : Campus Yaoundé</p>
+            <p>Date : 5 avril 2025</p>
+            <div class="actions">
+              <button class="view-btn">View</button>
+              <button class="postuler-btn">Postuler</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <a href="index.html">← Retour à l'accueil</a>
-  </footer>
+    <div id="offre-details">
+      <p>Sélectionnez une offre pour voir les détails ici.</p>
+    </div>
+  </div>
 
+  /*---------------------------------- CODE JAVASCRIPT ---------------------------------------------*/
 
-
-  /*--------------------------------           CODE JAVASCRIOT          -------------------------------------------*/
-  
   <script>
   document.querySelectorAll(".view-btn").forEach(button => {
     button.addEventListener("click", function () {
@@ -179,5 +238,7 @@
   });
 </script>
 
+
+  
 </body>
 </html>
