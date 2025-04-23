@@ -83,3 +83,27 @@ toggle.addEventListener("click", () => {
     localStorage.setItem("cea-theme", mode);
     toggle.textContent = mode === "dark" ? "☀️ Mode clair" : "🌙 Mode sombre";
 });
+
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    fetch('https://script.google.com/macros/s/TON_URL/exec', {
+        method: 'POST',
+        body: JSON.stringify({ nom, email, message }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById('form-message').textContent = "Merci, votre message a bien été envoyé !";
+        document.getElementById('contact-form').reset();
+    })
+    .catch(err => {
+        document.getElementById('form-message').textContent = "Erreur lors de l'envoi.";
+        console.error(err);
+    });
+});
