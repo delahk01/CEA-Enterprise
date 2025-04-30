@@ -544,23 +544,20 @@ document.getElementById("form-ajout-offre").addEventListener("submit", function(
       TextDescriptif: document.getElementById("ajout-description").value
     };
 
+    // Évite le preflight en changeant le Content-Type
     fetch(URL_API, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/x-www-form-urlencoded"
       },
-      body: JSON.stringify(data)
+      body: "payload=" + encodeURIComponent(JSON.stringify(data))
     })
-    .then(res => res.json())
+    .then(res => res.text())
     .then(response => {
-      if (response.success) {
-        alert("✅ Offre ajoutée avec succès !");
-        document.getElementById("form-ajout-offre").reset();
-        document.getElementById("form-ajout-offre").style.display = "none";
-        chargerOffres();
-      } else {
-        alert("❌ Une erreur est survenue.");
-      }
+      alert("✅ Offre ajoutée avec succès !");
+      document.getElementById("form-ajout-offre").reset();
+      document.getElementById("form-ajout-offre").style.display = "none";
+      chargerOffres();
     })
     .catch(err => {
       console.error("Erreur lors de l’envoi :", err);
@@ -577,5 +574,6 @@ document.getElementById("form-ajout-offre").addEventListener("submit", function(
 
 document.addEventListener("DOMContentLoaded", chargerOffres);
 </script>
+
 </body>
 </html>
