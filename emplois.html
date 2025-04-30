@@ -433,7 +433,7 @@ Concours Nationaux :  Examens officiels pour intégrer des écoles, académies, 
   -->
 
   <script>
-const URL_API = "https://script.google.com/macros/s/AKfycbxXczEQ1fep9DtqJH1yG-t1qqkfJSTsAndp9rWYRXAIB-9QaaIWA3yH4TN9fIoqWUG3jg/exec";
+const URL_API = "https://script.google.com/macros/s/AKfycbzNDP46gegalIpqjBVBL4dt9UIhXGinjggwO6Y3u6lQ3LhukCze9DWBGZP2g22mnEtpXA/exec";
 
 function chargerOffres() {
   fetch(URL_API)
@@ -553,26 +553,31 @@ document.getElementById("form-ajout-offre").addEventListener("submit", function(
     })
     .then(res => res.text())
     .then(response => {
-      alert("✅ Offre ajoutée avec succès !");
-      document.getElementById("form-ajout-offre").reset();
-      document.getElementById("form-ajout-offre").style.display = "none";
-      chargerOffres();
+      if (response.trim() === "success") {
+        alert("✅ Offre ajoutée avec succès !");
+        document.getElementById("form-ajout-offre").reset();
+        document.getElementById("form-ajout-offre").style.display = "none";
+        chargerOffres();
+      } else {
+        alert("❌ Erreur : réponse inattendue du serveur.");
+      }
     })
     .catch(err => {
       console.error("Erreur lors de l’envoi :", err);
-      alert("❌ Échec d'envoi. Vérifie la configuration CORS ou la connexion.");
+      alert("❌ Échec d'envoi. Vérifie la configuration ou la connexion.");
     });
   };
 
   if (imageFile) {
     reader.readAsDataURL(imageFile);
   } else {
-    reader.onloadend(); // appel manuel si pas d'image
+    reader.onloadend(); // si pas d'image
   }
 });
 
 document.addEventListener("DOMContentLoaded", chargerOffres);
 </script>
+
 
 
 
