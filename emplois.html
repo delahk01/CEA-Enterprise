@@ -433,153 +433,90 @@ Concours Nationaux :  Examens officiels pour intégrer des écoles, académies, 
   -->
 
   <script>
-const URL_API = "https://script.google.com/macros/s/AKfycbzNDP46gegalIpqjBVBL4dt9UIhXGinjggwO6Y3u6lQ3LhukCze9DWBGZP2g22mnEtpXA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzNDP46gegalIpqjBVBL4dt9UIhXGinjggwO6Y3u6lQ3LhukCze9DWBGZP2g22mnEtpXA/exec";
 
-function chargerOffres() {
-  fetch(URL_API)
-    .then(res => res.json())
-    .then(donnees => {
-      const container = document.getElementById('offres-dynamiques');
-      container.innerHTML = "";
+const categories = {
+  "Jobs Étudiants": "jobs-etudiants",
+  "Stages Académiques et Professionnels": "stages-professionnels",
+  "Emplois Stables": "emplois-stables",
+  "Subventions / Incubateurs et Accélérateurs": "subventions",
+  "Bourses": "bourses",
+  "Formations et Attestations Gratuites": "formations",
+  "Concours Nationaux": "concours"
+};
 
-      const categories = {};
-
-      donnees.forEach(offre => {
-        const cat = offre.Categorie;
-        if (!categories[cat]) {
-          categories[cat] = [];
-        }
-        categories[cat].push(offre);
-      });
-
-      Object.keys(categories).forEach(categorie => {
-        const section = document.createElement('div');
-        section.classList.add('offres-section');
-        section.innerHTML = `<h2>${categorie}</h2><div class="offres-group"></div>`;
-        const group = section.querySelector('.offres-group');
-
-        categories[categorie].forEach(offre => {
-          const carte = document.createElement('div');
-          carte.classList.add('offre');
-          carte.innerHTML = `
-            <img src="${offre.ImageURL || 'images/cea-logo.jpg'}" alt="${offre.Entreprise}">
-            <div class="entreprise">${offre.Entreprise}</div>
-            <h3>${offre.Titre}</h3>
-            <p>Lieu : ${offre.Lieu}</p>
-            <p>Date : ${offre.Date}</p>
-            <div class="actions">
-              <button class="view-btn" onclick='voirDetails(${JSON.stringify(offre)})'>View</button>
-            </div>
-          `;
-          group.appendChild(carte);
-        });
-
-        container.appendChild(section);
-      });
-    })
-    .catch(err => {
-      console.error("Erreur lors du chargement des offres :", err);
-      alert("Erreur de connexion à Google Sheets");
-    });
-}
-
-function voirDetails(offre) {
-  const details = document.getElementById("offre-details");
-  details.innerHTML = `
-    <img src="${offre.ImageURL}" alt="">
-    <h2>${offre.Titre}</h2>
-    <h3>${offre.Entreprise}</h3>
-    <p><strong>${offre.Lieu}</strong></p>
-    <p><strong>${offre.Date}</strong></p>
-    <p>${offre.TextDescriptif || "Pas de description"}</p>
-    <button class="postuler-btn" onclick="ouvrirFormulairePostulation('${offre.Categorie}')">Postuler</button>
+function createOffreCard(offre) {
+  const card = document.createElement('div');
+  card.className = "offre";
+  card.innerHTML = `
+    <img src="${offre.ImageURL || 'images/default.jpg'}" alt="${offre.Entreprise}">
+    <div class="entreprise">${offre.Entreprise}</div>
+    <h3>${offre.Titre}</h3>
+    <p>Lieu : ${offre.Lieu}</p>
+    <p>Date : ${offre.Date}</p>
+    <div class="actions">
+      <button class="view-btn" data-descriptif="${encodeURIComponent(offre.TextDescriptif || '')}" data-titre="${offre.Titre}" data-entreprise="${offre.Entreprise}" data-lieu="${offre.Lieu}" data-date="${offre.Date}" data-image="${offre.ImageURL}">Voir</button>
+      <button class="postuler-btn">Postuler</button>
+    </div>
   `;
-  details.classList.add("active");
+  return card;
 }
 
-function ouvrirFormulairePostulation(categorie) {
-  const emails = {
-    "Jobs Étudiants": "jobsetudiant0@gmail.com",
-    "Stages Professionnels": "stagesap0@gmail.com",
-    "Emplois Stables": "stableemplois@gmail.com",
-    "Bourses": "etudebourse2@gmail.com",
-    "Formations et Attestations Gratuites": "infohubuy1@gmail.com",
-    "Concours Nationaux": "infohubuy1@gmail.com",
-    "Subventions / Incubateurs et accelerateurs": "subventionincubateur@gmail.com"
-  };
-
-  const email = emails[categorie] || "contact@entreprise.com";
-
-  const details = document.getElementById("offre-details");
-  const formHTML = `
-    <form class="animate-form" action="mailto:${email}" method="POST" enctype="text/plain">
-      <input type="text" name="Nom" placeholder="Votre nom" required>
-      <input type="email" name="Email" placeholder="Votre email" required>
-      <textarea name="Message" placeholder="Votre message ou motivation" rows="5" required></textarea>
-      <button type="submit">Envoyer ma candidature</button>
+function afficherDetails(titre, entreprise, lieu, date, image, descriptif) {
+  const offreDetails = document.getElementById('offre-details');
+  offreDetails.innerHTML = `
+    <img src="${image || 'images/default.jpg'}" alt="">
+    <h2 style="color: var(--blue);">${titre}</h2>
+    <h3>${entreprise}</h3>
+    <p><strong>${lieu}</strong></p>
+    <p><strong>${date}</strong></p>
+    <p style="margin-top:1rem;">${decodeURIComponent(descriptif)}</p>
+    <form class="animate-form">
+      <input type="text" placeholder="Votre nom" required>
+      <input type="email" placeholder="Votre email" required>
+      <textarea placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
     </form>
   `;
-  details.insertAdjacentHTML("beforeend", formHTML);
 }
 
-function toggleFormAjout() {
-  const form = document.getElementById("form-ajout-offre");
-  form.style.display = (form.style.display === "none") ? "block" : "none";
-}
+function chargerOffres() {
+  fetch(scriptURL)
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(offre => {
+        const catKey = offre.Categorie?.trim();
+        const idSection = categories[catKey];
+        if (!idSection) return;
 
-document.getElementById("form-ajout-offre").addEventListener("submit", function(e) {
-  e.preventDefault();
+        const section = document.querySelector(`#${idSection} .offres-group`);
+        if (section) {
+          const card = createOffreCard(offre);
+          section.appendChild(card);
+        }
+      });
 
-  const reader = new FileReader();
-  const imageFile = document.getElementById("ajout-image").files[0];
-
-  reader.onloadend = function () {
-    const data = {
-      Titre: document.getElementById("ajout-titre").value,
-      Entreprise: document.getElementById("ajout-entreprise").value,
-      Lieu: document.getElementById("ajout-lieu").value,
-      Date: document.getElementById("ajout-date").value,
-      Categorie: document.getElementById("ajout-categorie").value,
-      ImageURL: reader.result || "",
-      TextDescriptif: document.getElementById("ajout-description").value
-    };
-
-    fetch(URL_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: "payload=" + encodeURIComponent(JSON.stringify(data))
-    })
-    .then(res => res.text())
-    .then(response => {
-      if (response.trim() === "success") {
-        alert("✅ Offre ajoutée avec succès !");
-        document.getElementById("form-ajout-offre").reset();
-        document.getElementById("form-ajout-offre").style.display = "none";
-        chargerOffres();
-      } else {
-        alert("❌ Erreur : réponse inattendue du serveur.");
-      }
+      // Gestion bouton "Voir"
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          afficherDetails(
+            btn.dataset.titre,
+            btn.dataset.entreprise,
+            btn.dataset.lieu,
+            btn.dataset.date,
+            btn.dataset.image,
+            btn.dataset.descriptif
+          );
+        });
+      });
     })
     .catch(err => {
-      console.error("Erreur lors de l’envoi :", err);
-      alert("❌ Échec d'envoi. Vérifie la configuration ou la connexion.");
+      console.error("Erreur chargement offres :", err);
+      document.getElementById('offres-liste').innerHTML = `<p style="color:red;text-align:center;">❌ Erreur de connexion à Google Sheets</p>`;
     });
-  };
-
-  if (imageFile) {
-    reader.readAsDataURL(imageFile);
-  } else {
-    reader.onloadend(); // si pas d'image
-  }
-});
+}
 
 document.addEventListener("DOMContentLoaded", chargerOffres);
 </script>
-
-
-
-
 </body>
 </html>
